@@ -1,6 +1,8 @@
 declare namespace Robusta {
 
-  interface CliParams {
+  interface Params {
+    /** Running interface: cli, web... */
+    _I: string,
     /** Running mode: trade|train|test */
     mode: string,
     /** User/strategy provided params */
@@ -40,7 +42,7 @@ declare namespace Robusta {
   }
 
   interface Context {
-    params: CliParams,
+    params: Params,
     /** Strategy file path */
     strategy: string,
     /** Running mode: trade|train|test */
