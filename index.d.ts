@@ -84,7 +84,11 @@ declare namespace Robusta {
     /** Check lookback period */
     isLookback: boolean,
     /** Buy order to target weights */
-    buyTarget: (weights: Weights) => void,
+    buyTarget: (weights: {[ticker: string]: number}) => void,
+    /** Sell order to target weights */
+    sellTarget: (weights: {[ticker: string]: number}) => void,
+    /** Record/save values for later inspection */
+    record: (data: {}) => void,
     /** User/strategy provided context */
     [custom: string]: any
   }
