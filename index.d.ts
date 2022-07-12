@@ -41,6 +41,32 @@ declare namespace Robusta {
     [ticker: string]: number
   }
 
+  interface Order {
+    /** Send Good Til Cancelled order */
+    gtc: (price?: number) => Order,
+    /** Send market order */
+    market: () => Order,
+    /** Limit order */
+    limit: (price?: number) => Order,
+  }
+
+  interface Trader {
+    /** Create an empty order without send */
+    create: (ticker: string, volume: number, price?: number) => Order,
+    /** Get orders by id or ticker */
+    orders: (id?: number|string) => Order|Order[]
+    /** Cancel orders by id or ticker, return canceled orders */
+    cancel: (id?: number|string) => Order|Order[]
+    /** Close orders by id or ticker, return closed orders */
+    close: (id?: number|string) => Order|Order[]
+    /** Buy/Sell order to target weights */
+    orderTarget: (weights: {[ticker: string]: number}) => Trader,
+    /** Buy order to target weights */
+    buyTarget: (weights: {[ticker: string]: number}) => Trader,
+    /** Sell order to target weights */
+    sellTarget: (weights: {[ticker: string]: number}) => Trader,
+  }
+
   interface Context {
     params: Params,
     /** Strategy file path */
@@ -85,10 +111,10 @@ declare namespace Robusta {
     isUnstable: boolean,
     /** Check lookback period */
     isLookback: boolean,
-    /** Buy order to target weights */
-    buyTarget: (weights: {[ticker: string]: number}) => void,
-    /** Sell order to target weights */
-    sellTarget: (weights: {[ticker: string]: number}) => void,
+    /** Who makes and manages trades */
+    trader: Trader,
+    /** Generate time series data, index from current to past. arr[0] is the soonest data */
+    series: (arr: [], value: any, len: number) => [],
     /** Record/save values for later inspection */
     record: (data: {}) => void,
     /** User/strategy provided context */
