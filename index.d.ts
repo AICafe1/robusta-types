@@ -40,9 +40,9 @@ declare namespace Robusta {
   }
 
   interface Context {
+    params: CliParams,
     /** Strategy file path */
     strategy: string,
-    params: CliParams,
     /** Running mode: trade|train|test */
     mode: string,
     /** Backtest start date */
@@ -86,6 +86,11 @@ declare namespace Robusta {
     /** Buy order to target weights */
     buyTarget: (weights: Weights) => void,
     /** User/strategy provided context */
+    [custom: string]: any
+  }
+
+  interface State {
+    /** User/strategy/trading state */
     [custom: string]: any
   }
 }
