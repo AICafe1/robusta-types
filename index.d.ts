@@ -132,6 +132,8 @@ declare namespace Robusta {
     lookback: number
     /** Bar fields to select: Default: 'ohlcv', see @interface Bar */
     barFields: string
+    /** Open trade at the end of simulation time */
+    openEnd: boolean
     /** Current running bar */
     bar: number
     /** Current running date of bar */
