@@ -2,36 +2,67 @@ declare namespace Robusta {
 
   interface Params {
     /** Running interface: cli, web... */
-    _I: string,
+    _I: string
     /** Running mode: trade|train|test */
-    mode: string,
+    mode: string
     /** User/strategy provided params */
     [custom: string]: string
   }
 
   interface Bar {
     /** Open price */
-    o: number,
+    o: number
     /** Highest price */
-    h: number,
+    h: number
     /** Lowest price */
-    l: number,
+    l: number
     /** Close price */
-    c: number,
+    c: number
     /** Deal volume */
-    v: number,
+    v: number
     /** Put-through volume */
-    p: number,
+    p: number
     /** Adjust ratio: u = c * Math.exp(a) */
-    a: number,
+    a: number
     /** Stock share number */
-    s: number,
+    s: number
     /** Unadjusted close price */
-    u: number,
-    /** Unadjusted open price (from) */
-    f: number
+    u: number
     /** Fundamental indicators */
     [fundamental: string]: number
+    /** Stock events */
+    [event: string]: string
+  }
+
+  interface Tick {
+    /** Ask price 3 */
+    a3: number
+    /** Ask volume 3 */
+    w3: number
+    /** Ask price 2 */
+    a2: number
+    /** Ask volume 2 */
+    w2: number
+    /** Ask price 1 */
+    a1: number
+    /** Ask volume 1 */
+    w1: number
+    /** Bid price 1 */
+    b1: number
+    /** Bid volume 1 */
+    v1: number
+    /** Bid price 2 */
+    b2: number
+    /** Bid volume 2 */
+    v2: number
+    /** Bid price 3 */
+    b3: number
+    /** Bid volume 3 */
+    v3: number
+    /** Last matched price */
+    p: number
+    /** Last matched volume */
+    v: number
     /** Stock events */
     [event: string]: string
   }
@@ -43,80 +74,80 @@ declare namespace Robusta {
 
   interface Order {
     /** Send Good Til Cancelled order */
-    gtc: (price?: number) => Order,
+    gtc: (price?: number) => Order
     /** Send market order */
-    market: () => Order,
+    market: () => Order
     /** Limit order */
-    limit: (price?: number) => Order,
+    limit: (price?: number) => Order
   }
 
   interface Trader {
     /** Create an empty order without send */
-    create: (ticker: string, volume: number, price?: number) => Order,
+    create: (ticker: string, volume: number, price?: number) => Order
     /** Get orders by id or ticker */
-    orders: (id?: number|string) => Order|Order[]
+    orders: (id?: number|string, status?: string) => Order|Order[]
     /** Cancel orders by id or ticker, return canceled orders */
     cancel: (id?: number|string) => Order|Order[]
     /** Close orders by id or ticker, return closed orders */
     close: (id?: number|string) => Order|Order[]
     /** Buy/Sell order to target weights */
-    orderTarget: (weights: {[ticker: string]: number}) => Trader,
+    orderTarget: (weights: {[ticker: string]: number}) => Trader
     /** Buy order to target weights */
-    buyTarget: (weights: {[ticker: string]: number}) => Trader,
+    buyTarget: (weights: {[ticker: string]: number}) => Trader
     /** Sell order to target weights */
-    sellTarget: (weights: {[ticker: string]: number}) => Trader,
+    sellTarget: (weights: {[ticker: string]: number}) => Trader
   }
 
   interface Context {
-    params: Params,
+    params: Params
     /** Strategy file path */
-    strategy: string,
+    strategy: string
     /** Running mode: trade|train|test */
-    mode: string,
+    mode: string
     /** Backtest start date */
-    startDate: string,
+    startDate: string
     /** Backtest end date */
-    endDate: string|undefined,
+    endDate: string|undefined
     /** Start trading session: Minutes from midnight, example: 135 equal at 09:15:00 GMT+7 */
-    startMarket: number,
+    startMarket: number
     /** Start break session: Minutes from midnight, example: 271 equal at 11:31:00 GMT+7 */
-    startBreak: number,
+    startBreak: number
     /** End break session: Minutes from midnight, example: 360 equal at 13:00:00 GMT+7 */
-    endBreak: number,
+    endBreak: number
     /** End trading session: Minutes from midnight, example: 465 equal at 14:45:00 GMT+7 */
-    endMarket: number,
+    endMarket: number
     /** Bar period in minutes: 1440 for daily */
-    barPeriod: number,
+    barPeriod: number
     /** Bar offset from 0 time: 465 equal at 14:45:00 GMT+7 */
-    barOffset: number,
+    barOffset: number
     /** Day offset in Microseconds from midnight, 30000 means run 30 seconds ahead */
-    dayOffset: number,
+    dayOffset: number
     /** List of trading assets */
-    assets: [ticker: string][],
+    assets: [ticker: string][]
     /** Trading market. Default: 'vn' */
-    market: string,
+    market: string
     /** Data type/resolution to load. Ex: daily */
-    dataType: string,
+    dataType: string
     /** Lookback period (number of bar) */
-    lookback: number,
+    lookback: number
     /** Bar fields to select: Default: 'ohlcv', see @interface Bar */
-    barFields: string,
+    barFields: string
     /** Current running bar */
-    bar: number,
+    bar: number
     /** Current running date of bar */
-    date: Date,
+    date: Date
     /** Slice data at current bar */
-    data: {[ticker: string]: Bar},
+    data: {[ticker: string]: Bar|Tick}
     /** Check unstable period */
-    isUnstable: boolean,
+    isUnstable: boolean
     /** Check lookback period */
-    isLookback: boolean,
+    isLookback: boolean
     /** Who makes and manages trades */
-    trader: Trader,
+    trader: Trader
     /** Generate time series data, index from current to past. arr[0] is the soonest data */
-    series: (arr: [], value: any, len: number) => [],
+    series: (arr: [], value: any, len: number) => []
     /** Record/save values for later inspection */
-    record: (data: {}) => void,
+    record: (data: {}) => void
     /** User/strategy provided context */
     [custom: string]: any
   }
