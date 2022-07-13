@@ -98,6 +98,8 @@ declare namespace Robusta {
     close: number
     /** Taked profit and loss */
     pnl?: number
+    /** Order status */
+    status: string
   }
 
   interface Trader {
