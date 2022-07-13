@@ -73,17 +73,32 @@ declare namespace Robusta {
   }
 
   interface Order {
-    /** Send Good Til Cancelled order */
-    gtc: (price?: number) => Order
-    /** Send market order */
-    market: () => Order
-    /** Limit order */
-    limit: (price?: number) => Order
+    account?: string|number
+    strategy?: string|number
+    /** Order side: B or S */
+    side: string
+    symbol: string
+    /** Current volume */
+    volume: number
+    /** Current price */
+    price: number
+    /** Volume at opening */
+    open: number
+    /** Price at opening */
+    openPrice: number
+    /** When opening */
+    openAt: Date
+    /** Taked profit and loss */
+    pnl?: number
   }
 
   interface Trader {
     /** Create an empty order without send */
     create: (ticker: string, volume: number, price?: number) => Order
+    /** Send market order */
+    market: (order: Order) => Order
+    /** Send limit order */
+    limit: (order: Order) => Order
     /** Get orders by id or ticker */
     orders: (id?: number|string, status?: string) => Order|Order[]
     /** Cancel orders by id or ticker, return canceled orders */
