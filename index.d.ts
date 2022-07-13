@@ -88,6 +88,8 @@ declare namespace Robusta {
     openPrice: number
     /** When opening */
     openAt: Date
+    /** Days in the market */
+    days: number
     /** Locked volume */
     lock: number
     /** Start lock time */
