@@ -98,6 +98,8 @@ declare namespace Robusta {
     close: number
     /** Taked profit and loss */
     pnl?: number
+    /** Stock dividend (kVND) */
+    dividend: number
     /** Order status */
     status: string
   }
