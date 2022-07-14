@@ -75,31 +75,25 @@ declare namespace Robusta {
   interface Order {
     account?: string|number
     strategy?: string|number
-    /** Order side: B or S */
+    /** Order side: B=Buy, S=Sell, D=Dividend, X=Split */
     side: string
     symbol: string
-    /** Current volume */
+    /** Current volume, negative for sell short */
     volume: number
-    /** Current price */
-    price: number
     /** Volume at opening */
     open: number
     /** Price at opening */
-    openPrice: number
+    price: number
     /** When opening */
     openAt: Date
     /** Days in the market */
     days: number
-    /** Locked volume */
-    lock: number
-    /** Start lock time */
-    lockAt: Date
     /** Closed volume */
     close: number
+    /** When closing */
+    closeAt: Date
     /** Taked profit and loss */
-    pnl?: number
-    /** Stock dividend (kVND) */
-    dividend: number
+    pnl: number
     /** Order status */
     status: string
   }
