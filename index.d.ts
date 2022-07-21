@@ -72,10 +72,10 @@ declare namespace Robusta {
     [ticker: string]: number
   }
 
-  interface Order {
+  interface Trade {
     account?: string|number
     strategy?: string|number
-    /** Order side: B=Buy, S=Sell, D=Dividend, X=Split */
+    /** Trade side: B=Buy, S=Sell, D=Dividend, X=Split */
     side: string
     symbol: string
     /** Current volume, negative for sell short */
@@ -94,23 +94,25 @@ declare namespace Robusta {
     closeAt: Date
     /** Taked profit and loss */
     pnl: number
-    /** Order status */
+    /** Trade status */
     status: string
   }
 
   interface Trader {
     /** Create an empty order without send */
-    create: (ticker: string, volume: number, price?: number) => Order
+    create: (ticker: string, volume: number, price?: number, side: string, account: string|number, strategy: string) => Trade
     /** Send market order */
-    market: (order: Order) => Order
+    market: (order: Trade) => Trade
     /** Send limit order */
-    limit: (order: Order) => Order
-    /** Get orders by id or ticker */
-    orders: (id?: number|string, status?: string) => Order|Order[]
-    /** Cancel orders by id or ticker, return canceled orders */
-    cancel: (id?: number|string) => Order|Order[]
-    /** Close orders by id or ticker, return closed orders */
-    close: (id?: number|string) => Order|Order[]
+    limit: (order: Trade) => Trade
+    /** Get trades by id or ticker */
+    trades: (id?: number|string, status?: string) => Trade|Trade[]
+    /** Get open trades by ticker */
+    openTrades: (ticker?: string) => Trade[]
+    /** Cancel trades by id or ticker, return canceled trades */
+    cancel: (id?: number|string) => Trade|Trade[]
+    /** Close trades by id or ticker, return closed trades */
+    close: (id?: number|string) => Trade|Trade[]
     /** Buy/Sell order to target weights */
     orderTarget: (weights: {[ticker: string]: number}) => Trader
     /** Buy order to target weights */
