@@ -139,6 +139,8 @@ declare namespace Robusta {
     endBreak: number
     /** End trading session: Minutes from midnight, example: 465 equal at 14:45:00 GMT+7 */
     endMarket: number
+    /** Weekend Trading */
+    weekendTrading: boolean
     /** Bar period in minutes: 1440 for daily */
     barPeriod: number
     /** Bar offset from 0 time: 465 equal at 14:45:00 GMT+7 */
