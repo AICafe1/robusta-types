@@ -125,6 +125,8 @@ declare namespace Robusta {
     params: Params
     /** Strategy file path */
     strategy: string
+    /** Strategy name */
+    name: string
     /** Running mode: trade|train|test */
     mode: string
     /** Backtest start date */
