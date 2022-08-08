@@ -171,6 +171,8 @@ declare namespace Robusta {
     isUnstable: boolean
     /** Check lookback period */
     isLookback: boolean
+    /** Only load data from live when trading */
+    onlyLive: boolean
     /** Who makes and manages trades */
     trader: Trader
     /** Generate time series data, index from current to past. arr[0] is the soonest data */
