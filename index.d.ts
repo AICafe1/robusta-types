@@ -86,6 +86,8 @@ declare namespace Robusta {
     price: number
     /** When opening */
     openAt: Date
+    /** Last update time */
+    updateAt: Date
     /** Days in the market */
     days: number
     /** Closed volume */
