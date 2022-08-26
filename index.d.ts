@@ -63,6 +63,12 @@ declare namespace Robusta {
     p: number
     /** Last matched volume */
     v: number
+    /** Floor price */
+    f: number
+    /** Basic price */
+    b: number
+    /** Ceil price */
+    c: number
     /** Stock events */
     [event: string]: string
   }
