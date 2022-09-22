@@ -94,6 +94,8 @@ declare namespace Robusta {
     openAt: Date
     /** Last update time */
     updateAt: Date
+    /** Bars in the market */
+    bars: number
     /** Days in the market */
     days: number
     /** Closed volume */
