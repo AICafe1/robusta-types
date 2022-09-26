@@ -210,6 +210,7 @@ declare namespace Robusta {
       price?: number,
       fee?: number,
       tax?: number,
+      realization?: number,
     }
   }
 }
