@@ -203,6 +203,13 @@ declare namespace Robusta {
     canShort: (symbol?: string) => boolean
     canClose: (trade: Trade) => boolean
     /** Make order */
-    order: (options: {side: string, symbol: string, volume: number, price?: number}) => {volume?: number, price?: number}
+    order: (options: {side: string, symbol: string, volume: number, price?: number, type?: string}) => {
+      /** Fill volume */
+      volume?: number,
+      /** Fill price */
+      price?: number,
+      fee?: number,
+      tax?: number,
+    }
   }
 }
