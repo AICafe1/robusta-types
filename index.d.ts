@@ -208,9 +208,6 @@ declare namespace Robusta {
       volume?: number,
       /** Fill price */
       price?: number,
-      fee?: number,
-      tax?: number,
-      realization?: number,
     }
   }
 }
