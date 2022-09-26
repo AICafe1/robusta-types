@@ -197,4 +197,12 @@ declare namespace Robusta {
     /** User/strategy/trading state */
     [custom: string]: any
   }
+
+  interface Broker {
+    lotAmount: (symbol?: string) => number
+    canShort: (symbol?: string) => boolean
+    canClose: (trade: Trade) => boolean
+    /** Make order */
+    order: (options: {side: string, symbol: string, volume: number, price?: number}) => {volume: number, price?: number}
+  }
 }
