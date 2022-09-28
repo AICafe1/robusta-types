@@ -28,10 +28,8 @@ declare namespace Robusta {
     s: number
     /** Unadjusted close price */
     u: number
-    /** Fundamental indicators */
-    [fundamental: string]: number
-    /** Stock events */
-    [event: string]: string
+    /** Fundamental indicators or stock events */
+    [name: string]: string|number|Object
   }
 
   interface Tick {
@@ -70,7 +68,7 @@ declare namespace Robusta {
     /** Ceil price */
     c: number
     /** Stock events */
-    [event: string]: string
+    [event: string]: string|number|Object
   }
 
   interface Weights {
@@ -110,7 +108,7 @@ declare namespace Robusta {
 
   interface Trader {
     /** Create an empty order without send */
-    create: (ticker: string, volume: number, price?: number, side: string, account: string|number, strategy: string) => Trade
+    create: (ticker: string, volume: number, price: number, side: string, account: string|number, strategy: string) => Trade
     /** Send market order */
     market: (order: Trade) => Trade
     /** Send limit order */
