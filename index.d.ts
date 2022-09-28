@@ -167,6 +167,8 @@ declare namespace Robusta {
     lookback: number
     /** Bar fields to select: Default: 'ohlcv', see @interface Bar */
     barFields: string
+    /** Subscribe to dividend/split event. Default: false */
+    divEvent: boolean
     /** Open trade at the end of simulation time */
     openEnd: boolean
     /** Current running bar */
