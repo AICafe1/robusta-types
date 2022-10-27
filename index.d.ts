@@ -161,6 +161,8 @@ declare namespace Robusta {
     assets: [ticker: string][]
     /** Universe to trade */
     universe: string
+    /** Limit assets in universe */
+    limit?: number
     /** Trading market. Default: 'vn' */
     market: string
     /** Data type/resolution to load. Ex: daily */
