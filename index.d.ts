@@ -159,6 +159,8 @@ declare namespace Robusta {
     dayOffset: number
     /** List of trading assets */
     assets: [ticker: string][]
+    /** Universe to trade */
+    universe: string
     /** Trading market. Default: 'vn' */
     market: string
     /** Data type/resolution to load. Ex: daily */
