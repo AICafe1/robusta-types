@@ -188,7 +188,9 @@ declare namespace Robusta {
     /** Generate time series data, index from current to past. arr[0] is the soonest data */
     series: (arr: [], value: any, len: number) => []
     /** Record/save values for later inspection */
-    record: (data: {}) => void
+    record: (data: string) => void
+    /** Avoid record NAV */
+    avoidNav: boolean
     /** User/strategy provided context */
     [custom: string]: any
   }
