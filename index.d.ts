@@ -163,6 +163,8 @@ declare namespace Robusta {
     universe: string
     /** Get list assets of universe on current bar's date */
     getUniverse: () => [ticker: string][]
+    /** Quote currency of universe */
+    quoteCurrency: string
     /** Trading market. Default: 'vn' */
     market: string
     /** Data type/resolution to load. Ex: daily */
