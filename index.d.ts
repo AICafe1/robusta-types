@@ -207,7 +207,7 @@ declare namespace Robusta {
   }
 
   interface Broker {
-    lotAmount: (symbol?: string) => number
+    calcVolume: (value: number, price: number, symbol: string) => number
     canShort: (symbol?: string) => boolean
     canClose: (trade: Trade) => boolean
     /** Make order */
