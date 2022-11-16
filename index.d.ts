@@ -195,6 +195,8 @@ declare namespace Robusta {
     series: (arr: [], value: any, len: number) => []
     /** Record/save values for later inspection */
     record: (data: string) => void
+    /** Send monitor signal */
+    monitor: (period: number, url?: string) => void
     /** Avoid record NAV */
     avoidNav: boolean
     /** User/strategy provided context */
