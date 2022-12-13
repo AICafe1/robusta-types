@@ -74,6 +74,8 @@ declare namespace Robusta {
   interface Weights {
     /** Weight of a ticker. Negative means short, absolute value > 1 means leverage */
     [ticker: string]: number
+    /** Trade control of a ticker */
+    [ticker: Symbol]: TradeControl
   }
 
   interface Trade {
@@ -106,6 +108,27 @@ declare namespace Robusta {
     status: string
   }
 
+  interface TradeControl {
+    /** Trade time limit in bars */
+    life_time: number
+    /** Pending order lifetime in bars */
+    entry_time: number
+    /** Order entry delay in seconds */
+    order_delay: number
+    /** GTC order duration in seconds */
+    order_duration: number
+    /** Stoploss price/distance */
+    stop: number
+    /** Profit target */
+    take_profit: number
+    /** Trailing */
+    trail: number
+    trail_slope: number
+    trail_lock: number
+    trail_step: number
+    trail_speed: number
+  }
+
   interface Trader {
     /** Create an empty order without send */
     create: (ticker: string, volume: number, price: number, side: string, account: string|number, strategy: string) => Trade
@@ -122,11 +145,11 @@ declare namespace Robusta {
     /** Close trades by id or ticker, return closed trades */
     close: (id?: number|string) => Trade|Trade[]
     /** Buy/Sell order to target weights */
-    orderTarget: (weights: {[ticker: string]: number}) => Trader
+    orderTarget: (weights: Weights) => Trader
     /** Buy order to target weights */
-    buyTarget: (weights: {[ticker: string]: number}) => Trader
+    buyTarget: (weights: Weights) => Trader
     /** Sell order to target weights */
-    sellTarget: (weights: {[ticker: string]: number}) => Trader
+    sellTarget: (weights: Weights) => Trader
   }
 
   interface Context {
