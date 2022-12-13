@@ -109,14 +109,6 @@ declare namespace Robusta {
   }
 
   interface TradeControl {
-    /** Trade time limit in bars */
-    life_time: number
-    /** Pending order lifetime in bars */
-    entry_time: number
-    /** Order entry delay in seconds */
-    order_delay: number
-    /** GTC order duration in seconds */
-    order_duration: number
     /** Stoploss price/distance */
     stop: number
     /** Profit target */
