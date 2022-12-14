@@ -117,7 +117,6 @@ declare namespace Robusta {
     trail: number
     trail_slope: number
     trail_lock: number
-    trail_step: number
     trail_speed: number
   }
 
